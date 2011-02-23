@@ -24,6 +24,7 @@ Seefood::Application.configure do
   config.action_dispatch.best_standards_support = :builtin
 
   # paperclip config
-  Paperclip.options[:command_path] = "/opt/local/bin"
+  # the following line is only necessary if imagemagick binaries are not on path
+  # Paperclip.options[:command_path] = "/opt/local/bin"
 end
 
