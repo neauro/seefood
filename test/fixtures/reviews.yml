@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  stars: 1
+  description: MyText
+  menu_item: 
+
+two:
+  stars: 1
+  description: MyText
+  menu_item: 

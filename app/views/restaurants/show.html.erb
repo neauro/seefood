@@ -10,7 +10,28 @@
   <%= @restaurant.address %>
 </p>
 
-<%= link_to 'Menu Items', restaurant_menu_items_path(@restaurant) %>
 <hr>
+<h3>Menu Items</h3>
+
+<table>
+  <tr>
+    <td>Name</td>
+    <td>Price</td>
+    <td></td>
+    <td></td>
+  </tr>
+
+  <%@restaurant.menu_items.each do |menu_item| %>
+    <tr>
+      <td><%= menu_item.name %></td>
+      <td><%= menu_item.price %></td>
+      <td><%= link_to "Show", menu_item %></td>
+      <td><%= link_to "Destroy", menu_item, :confirm => "Are you sure you want to delete this menu item and all associated ratings?", :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<hr>
+<%= link_to "New Review", new_restaurant_review_path(@restaurant) %> |
 <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
 <%= link_to 'Back', restaurants_path %>

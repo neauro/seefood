@@ -1,7 +1,10 @@
 Seefood::Application.routes.draw do
+  resources :menu_items, :only => [:show, :destroy]
+
   resources :restaurants do
-    resources :menu_items
+    resources :reviews, :except => [:index]
   end
+
   get "home/index"
   get "restaurant/index"
 

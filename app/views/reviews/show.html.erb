@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Stars:</b>
+  <%= @review.stars %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @review.description %>
+</p>
+
+<p>
+  <b>Menu item:</b>
+  <%= @review.menu_item %>
+</p>
+
+<%= image_tag @review.picture.url(:medium) %>
+<%= image_tag @review.picture.url(:thumb) %>
+<hr>
+<%= link_to 'Edit', edit_restaurant_review_path(@restaurant, @review) %> |
+<%= link_to 'Back', @restaurant %>
