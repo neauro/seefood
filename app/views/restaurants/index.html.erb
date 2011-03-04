@@ -1,26 +1,66 @@
-<h1>Seefood Homepage</h1>
-<h2>Listing restaurants</h2>
+<!-- restaurant index is the front page of seedfood -->
+<%  # right now this page uses the first restaurant,
+    # and that restaurant's first menu item
+    
+    @restaurant = Restaurant.find(1)
+    @menu_item = @restaurant.menu_items.find(1) %>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Address</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
-<% @restaurants.each do |restaurant| %>
-  <tr>
-    <td><%= restaurant.name %></td>
-    <td><%= restaurant.address %></td>
-    <td><%= link_to 'Show', restaurant %></td>
-    <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
-    <td><%= link_to 'Destroy', restaurant, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+<!-- begin left column on page -->
+<div id="food-data">
+    <div class="food-data-box">
+        <!-- todo: grab a random menu_item from within the user-given area,
+            display the most popular picture of that menu_item
+            and other data -->
+        <!-- todo: update this with whatever the user put into the location -->
+        <h1>Random Food near Seattle, WA</h1>
+        <div class="big-menuitem-image">
+            <!-- todo: post a picture here -->
+            stub for 350x250 picture
+        </div>
+        <div class="review-info">
+            <%= link_to @menu_item.name, menu_item_path(@menu_item) %> at
+            <%= link_to @restaurant.name, restaurant_path(@restaurant) %><br/>
+            <!-- todo: link this to a profile view -->
+            by <a href="profile.html">nadine</a><br/>
+            <!-- todo: get the date that the rating was uploaded -->
+            <span class="rating-date"><strong>Date Taken:</strong> March 3, 2001</span><br/>
+            <!-- todo: get the rating of the picture dynamically -->
+            <span class="picture-rating"><strong>Picture Rating:</strong> 5 stars</span><br/>
+            <p class="desc">
+                <!-- todo: get the description of this rating -->
+                These burritos are the size of small children and just as delicious!
+            </p>
+        </div>
+    </div>
+    
+    <div class="food-data-box">
+        <!-- todo: get the most recently uploaded review, in this area -->
+        <h1>Most Recent Picture</h1>
+        <div class="big-menuitem-image">
+            stub for 350x250 picture
+        </div>
+        <div class="review-info">
+            <%= link_to @menu_item.name, menu_item_path(@menu_item) %> at
+            <%= link_to @restaurant.name, restaurant_path(@restaurant) %><br/>
+            by <a href="profile.html">nadine</a><br/>
+            <!-- todo: get the average of what users have rated this picture) -->
+            <span class="rating-date"><strong>Date Taken:</strong> March 3, 2001</span><br/>
+            <!-- todo: get the rating of the picture dynamically -->
+            <span class="picture-rating"><strong>Picture Rating:</strong> 5 stars</span><br/>
+            <p class="desc">
+                <!-- todo: get the description of this rating -->
+                These burritos are the size of small children and just as delicious!
+            </p>
+        </div>
+    </div>
+</div>
+<!-- end left column on page -->
 
-<br />
 
-<%= link_to 'New Restaurant', new_restaurant_path %>
+<!-- begin right column on page -->
+<div id="content">
+    <p id="notice"><%= notice %></p>
+
+</div>
+<!-- end right column on page -->

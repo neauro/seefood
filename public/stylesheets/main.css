@@ -1,0 +1,368 @@
+/* CSS colors
+ * background: #f0f0f0
+ * navigation color: #7fc22f
+ * stub color for imgs: #eaadea
+ * link color: #598721
+ * color for picture rating text: #737373
+ * color for content-table #e6febf
+ * sort options for content: #fed980
+ *
+ * */
+
+body {
+    /* background-color: var(bgColor); */
+    background-color: #f0f0f0;
+    color: #222222;
+    font-size:10pt;
+}
+
+#center-box {
+    background-color:#ffffff;
+    width:1000px;
+    margin-left:auto;
+    margin-right:auto;
+    overflow:hidden;
+}
+
+h1#sitename a:link, h1#sitename a:visited {
+    font-size:180%;
+    color:#000000;
+    text-decoration:none;
+    font-weight:normal;
+    font-family:"Georgia", serif;
+    margin-left:auto;
+    margin-right:auto;
+    width:300px;
+    display:block;
+    margin-top:1em;
+    margin-bottom:1em;
+    text-shadow: 1px 1px 1px #222222;
+}
+
+    h1#sitename a:hover {
+        cursor:pointer;
+    }
+
+div#navi {
+    width:100%;
+    background-color:#7fc22f;
+    height:35px;
+}
+
+    div#navi div {
+        position:relative;
+        top:0.3em;
+        margin-left:auto;
+        margin-right:auto;
+        width:650px;
+    }
+
+    div#navi a:link {
+        font-size:140%;
+        text-decoration:none;
+        color:#000000;
+        font-family: "Cambria","Palatino Linotype","Palatino","Baskerville","Book Antiqua","Nimbus Roman No9 L","FreeSerif","Georgia","Times New Roman",serif;
+    }
+
+    div#navi a:hover {
+        position:relative;
+        text-shadow: 1px 1px 1px #222222;
+    }
+
+    div#navi ul {
+        width:500px;
+        display:inline;
+        position:relative;
+    }
+
+    div#navi li {
+        display:inline;
+        padding:15px;
+    }
+
+    div#navi li:hover {
+    }
+
+
+div#main-content {
+    margin-top:1em;
+    font-family: "Cambria","Palatino Linotype","Palatino","Baskerville","Book Antiqua","Nimbus Roman No9 L","FreeSerif","Georgia","Times New Roman",serif;
+    margin-bottom:3em;
+    overflow:hidden;
+}
+    div#food-data {
+        position:relative;
+        float:left;
+        width:400px;
+    }
+
+        div#food-data div.food-data-box {
+            margin-bottom:3em;
+        }
+
+        div.food-data-box h1 {
+            font-weight:normal;
+            display:inline;
+            margin-top:3em;
+        }
+
+        div.big-menuitem-image {
+            width:350px;
+            height:250px;
+            margin-left:auto;
+            margin-right:auto;
+            background-color:#eaadea;
+        }
+
+        div.review-info {
+            font-size:170%;
+            padding:10px;
+        }
+
+        div.review-info a:link, div.review-info a:visited {
+            text-decoration:none;
+            font-size:110%;
+            color:#598721;
+        }
+
+        div.review-info a:hover {
+            text-decoration:underline;
+        }
+
+        div.review-info span.picture-rating,
+        div.review-info span.rating-date {
+            font-size:70%;
+            color:#737373;
+
+        }
+
+        div.review-info p.desc {
+            margin-left:1em;
+            color:#222222;
+            font-size:100%;
+        }
+
+        div.review-info table.picture-comments th {
+            font-size:71%;
+        }
+
+    div#content {
+        position:relative;
+        float:right;
+        width:600px;
+    }
+
+    div#content h2 {
+        font-weight:normal;
+        margin-top:-0.7em;
+        margin-left:2em;
+    }
+
+    div#content table#info td {
+        margin-bottom:3em;
+        background-color:#e6febf;
+        padding:5px;
+    }
+
+    div#content table#content-table td:first-child {
+        font-weight:bold;
+        width:10em;
+    }
+
+    div#content table#content-table a:link, a:visited {
+        font-size:100%; /* make links not so big in table */
+    }
+
+    div#content a:link, div#content a:visited {
+        text-decoration:none;
+        font-weight:normal;
+        font-size:110%;
+        color:#598721;
+    }
+
+    div#content a:hover {
+        text-decoration:underline;
+    }
+
+        div#ratings {
+            margin-top:3em;
+        }
+
+        div#ratings h1 {
+            font-weight:normal;
+            font-size:140%;
+        }
+
+        div#ratings div.ratings-list {
+            width:100%;
+            overflow:hidden;
+        }
+
+            div.rating-item {
+                position:relative;
+                float:left;
+                width:150;
+                height:150;
+                margin:5px;
+            }
+
+            div.small-menuitem-image {
+                background-color:#eaadea;
+                height:110px;
+                width:130px;
+                text-align:center;
+
+            }
+
+            div#comments {
+                margin-top:3em;
+            }
+
+            div#comments h1 {
+                font-weight:normal;
+                font-size:140%;
+            }
+
+                table#comments-table {
+                    width:100%;
+                }
+
+                table#comments-table td {
+                    padding:5px;
+                }
+
+                table#comments-table th {
+                    font-size:110%;
+                }
+
+    div#content div#visual-menu {
+        overflow:hidden;
+        width:100%;
+        margin-top:3em;
+    }
+
+        div#visual-menu h1 {
+            font-weight:normal;
+            font-size:140%;
+        }
+
+        ul#sort-options li {
+            display:inline;
+            padding:7px;
+            background-color:#fed980;
+        }
+
+            div#visual-menu ul#sort-options li:hover {
+                cursor:pointer;
+                position:relative;
+                top:1px;
+                left:1px;
+            }
+
+    div#content div#content-footer {
+        margin-top:3em;
+        width:100%;
+    }
+
+    div#content div#content-footer a:link, a:visited {
+        font-size:97%;
+    }
+
+        div#content div#content-footer span.note {
+            font-size:95%;
+            font-color:#6a6a6a;
+        }
+    
+
+/* stub style for buttons -- replace with an image later */
+div.button {
+    width:120px;
+    height:70px;
+    background-color:#ffbbff;
+    font-family:sans-serif;
+    text-align:center;
+    border-bottom:2px solid black;
+    border-right:1px solid black;
+}
+    div#content div.button {
+        position:relative;
+        float:right;
+        right:50px;
+    }
+
+    div#content div.button:hover {
+        cursor:pointer;
+        top:1px;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*** rails default styles ***/
+
+body, p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size:   13px;
+  line-height: 18px;
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+/*a { color: #000; }
+a:visited { color: #666; }
+a:hover { color: #fff; background-color:#000; }*/
+
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+#notice {
+  color: green;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
