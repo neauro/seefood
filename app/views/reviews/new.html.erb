@@ -1,5 +1,5 @@
-<h1>New review</h1>
+<h1>Add review for <%= @menu_item.name %> at <%= @menu_item.restaurant.name %></h1>
 
-<%= render 'form' %>
+<%= render "form" %>
 
-<%= link_to 'Back', @restaurant %>
+<%= link_to 'Back', :back %>

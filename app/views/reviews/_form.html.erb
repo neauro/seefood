@@ -1,4 +1,4 @@
-<%= form_for [@restaurant, @review], :html => { :multipart => true } do |f| %>
+<% form_for(@review, :html => { :multipart => true }) do |f| %>
   <% if @review.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
@@ -12,21 +12,27 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :menu_item %>
-    <%= f.collection_select(:menu_item_id, @restaurant.menu_items, :id, :name)%>
-  </div>
-  <div class="field">
-    <%= f.label :picture %>
+    Upload new picture
     <%= f.file_field :picture %>
   </div>
+
   <div class="field">
-    <%= f.label :stars %><br />
-    <%= f.text_field :stars %>
+    <%= f.label :stars %>
+    <% [1, 2, 3, 4, 5].each do |item| %>
+      <%= f.radio_button :stars, item %>
+      <%= item %>
+    <% end %>
   </div>
+
   <div class="field">
-    <%= f.label :description %><br />
+    <%= f.label :description %><br/>
     <%= f.text_area :description %>
   </div>
+
+  <div class="field">
+    <%= f.hidden_field :menu_item_id, :value => @menu_item.id %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

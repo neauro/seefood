@@ -1,9 +1,9 @@
 <!-- restaurant index is the front page of seedfood -->
 <%  # right now this page uses the first restaurant,
     # and that restaurant's first menu item
-    
-    @restaurant = Restaurant.find(1)
-    @menu_item = @restaurant.menu_items.find(1) %>
+    # todo: fix this.  it'll break if there are no menu items or no restaurants
+    @restaurant = Restaurant.all[0]
+    @menu_item = @restaurant.menu_items[0] %>
 
 
 <!-- begin left column on page -->
@@ -62,5 +62,20 @@
 <div id="content">
     <p id="notice"><%= notice %></p>
 
+    <table>
+      <tr>
+        <th>Restaurant</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    <% Restaurant.all.each do |restaurant| %>    
+      <tr>
+        <td><%= restaurant.name %></td>
+        <td><%= link_to 'Show', restaurant %></td>
+        <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
+        <td><%= link_to 'Delete', restaurant, :confirm => "Are you sure you want to delete this restaurant and all associated menu items and reviews?", :method => :delete %></td>
+      </tr>
+    <% end %>
 </div>
 <!-- end right column on page -->

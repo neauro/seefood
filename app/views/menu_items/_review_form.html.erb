@@ -1,0 +1,15 @@
+<div class="field">
+  Upload new picture<br>
+  <%= f.file_field :picture %>
+</div>
+<div class="field">
+  <%= f.label :stars %>
+  <% [1, 2, 3, 4, 5].each do |item| %>
+    <%= f.radio_button :stars, item %>
+    <%= item %>
+  <% end %>
+</div>
+<div class="field">
+  <%= f.label :description %><br/>
+  <%= f.text_area :description %>
+</div>

@@ -1,12 +1,11 @@
 Seefood::Application.routes.draw do
-  resources :menu_items, :only => [:show, :destroy]
+  resources :restaurants
 
-  resources :restaurants do
-    resources :reviews, :except => [:index]
-  end
+  match "/reviews/:menu_item_id/new" => "reviews#new", :as => "new_review", :via => "get"
+  resources :reviews, :except => [:index, :new]
 
-  get "home/index"
-  get "restaurant/index"
+  match "/menu_items/:restaurant_id/new" => "menu_items#new", :as => "new_menu_item", :via => "get"
+  resources :menu_items, :except => [:index]
 
   root :to => "restaurants#index"
 end

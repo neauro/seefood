@@ -1,0 +1,37 @@
+<h1>Create menu item and review for <%= @restaurant.name %></h1>
+
+<%= form_for(@menu_item, :html => {:multipart => true}) do |f| %>
+  <% if @menu_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@menu_item.errors.count, "error") %> prohibited this restaurant from being saved:</h2>
+
+      <ul>
+      <% @menu_item.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :price%><br />
+    <%= f.text_field :price%>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :restaurant_id, :value => @restaurant.id %>
+  </div>
+
+  <h2>New review</h2>
+  <%= f.fields_for(:reviews, :html => {:multipart => true}) do |builder| %>
+    <%= render 'review_form', :f => builder %>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

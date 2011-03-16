@@ -1,5 +1,5 @@
 class MenuItemsController < ApplicationController
-  before_filter :get_menu_item, :only => [:show, :edit, :update, :destroy]
+  before_filter :get_menu_item, :only => [:show, :destroy, :add_review, :edit, :update]
 
   def get_menu_item
     @menu_item = MenuItem.find(params[:id])
@@ -15,6 +15,7 @@ class MenuItemsController < ApplicationController
   end
 
   def show
+    @restaurant = @menu_item.restaurant
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @menu_item }
@@ -22,7 +23,10 @@ class MenuItemsController < ApplicationController
   end
 
   def new
+    @restaurant = Restaurant.find(params[:restaurant_id])
     @menu_item = MenuItem.new
+    @menu_item.reviews.build
+
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @menu_item }
@@ -33,8 +37,8 @@ class MenuItemsController < ApplicationController
   end
 
   def create
+    @restaurant = Restaurant.find(params[:menu_item][:restaurant_id])
     @menu_item = MenuItem.new(params[:menu_item])
-
     respond_to do |format|
       if @menu_item.save
         format.html { redirect_to(@menu_item, :notice => 'Menu item was successfully created.') }
@@ -66,5 +70,8 @@ class MenuItemsController < ApplicationController
       format.html { redirect_to(restaurant_path(restaurant)) }
       format.xml  { head :ok }
     end
+  end
+
+  def add_review
   end
 end
