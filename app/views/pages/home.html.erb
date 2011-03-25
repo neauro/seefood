@@ -1,0 +1,43 @@
+<%  # right now this page uses the first restaurant,
+    # and that restaurant's first menu item
+    # todo: grab a random restaurant within radius of user-given latitude/longitude
+    
+    @restaurant = Restaurant.all[0]
+    @menu_item = @restaurant.menu_items[0]
+    @review = @menu_item.reviews[0]
+%>
+
+
+<!-- begin left column on page -->
+<div id="food-data">
+  <!-- todo: grab a random menu_item from within the user-given area,
+      display the most popular picture of that menu_item
+      and other data -->
+  <!-- todo: update this with whatever the user put into the location -->
+  <%= render :partial => "layouts/databox",
+             :locals => { :title => "Random Food near Seattle, WA",
+                          :menu_item => @menu_item,
+                          :review => @review,
+                          :restaurant => @restaurant } %>
+
+    <!-- todo: get the most recently uploaded review, in this area -->
+  <%= render :partial => "layouts/databox",
+             :locals => { :title => "Most Recently Uploaded Picture",
+                          :menu_item => @menu_item,
+                          :review => @menu_item.reviews[0],
+                          :restaurant => @restaurant } %>
+</div>
+<!-- end left column on page -->
+
+
+<!-- begin right column on page -->
+<div id="content">
+    <p id="notice"><%= notice %></p>
+
+    Where are you? <input type="text" value="Taproot Theatre Company" id="address" size="60"/><input type="button" value="Find food!" id="find_address"/>
+
+    <div id="map">
+    </div>
+
+</div>
+<!-- end right column on page -->

@@ -16,6 +16,14 @@ class MenuItemsController < ApplicationController
 
   def show
     @restaurant = @menu_item.restaurant
+    @num_top_reviews = 4
+
+    # todo: get "best" review, and get most recent review
+    # this breaks when there are no reviews,
+    # but every menu item *should* have one
+    @first_review = @menu_item.reviews[0]
+    @last_review = @menu_item.reviews[-1]
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @menu_item }

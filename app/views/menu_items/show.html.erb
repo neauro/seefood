@@ -1,57 +1,17 @@
-<!-- todo: get "best" review -->
-<% first_review = @menu_item.reviews[0] %> <!-- this breaks when there are no reviews, but every menu item *should* have one -->
-<% last_review = @menu_item.reviews[-1] %> <!-- this breaks when there are no reviews, but every menu item *should* have one -->
 <!-- begin left column on page -->
 <div id="food-data">
-    <div class="food-data-box">
-        <!-- todo: make this part cooler, i.e. different colored background or "award" icon -->
-        <h1>Top Picture</h1>
+<!-- todo: make ~*TOP MENU ITEM*~ cooler, i.e. different colored background or "award" icon -->
+<%= render :partial => "layouts/databox",
+           :locals => { :title => "Top Picture",
+                        :menu_item => @menu_item,
+                        :review => @first_review,
+                        :restaurant => @restaurant } %>
 
-        <div class="big-menuitem-image">
-            <!-- todo: post a picture here -->
-            <%= image_tag first_review.picture.url(:medium) %><br/>
-            stub for 350x250 picture
-        </div>
-        <div class="review-info">
-            <%= link_to @menu_item.name, @menu_item %> at
-            <%= link_to @restaurant.name, @restaurant %><br/>
-            <!-- todo: link this to a profile view -->
-            by <a href="profile.html">nadine</a><br/>
-            <!-- todo: get the date that the review was uploaded -->
-            <span class="rating-date"><strong>Date Taken:</strong> <%= first_review.picture_updated_at %></span><br/>
-            <!-- todo: get the review of the picture dynamically -->
-            <span class="picture-rating"><strong>Picture Rating:</strong> <%= first_review.stars %></span><br/>
-            <p class="desc">
-                <!-- todo: get the description of this review -->
-                <%= first_review.description %>
-            </p>
-        </div>
-    </div>
-
-
-    <div class="food-data-box">
-        <!-- todo: get the most recently uploaded review -->
-        <h1>Most Recent Picture</h1>
-
-        <div class="big-menuitem-image">
-            <!-- todo: post a picture here -->
-            <%= image_tag last_review.picture.url(:medium) %>
-        </div>
-        <div class="review-info">
-            <%= link_to @menu_item.name, @menu_item %> at
-            <%= link_to @restaurant.name, @restaurant %><br/>
-            <!-- todo: link this to a profile view -->
-            by <a href="profile.html">nadine</a><br/>
-            <!-- todo: get the date that the review was uploaded -->
-            <span class="rating-date"><strong>Date Taken:</strong><%= last_review.picture_updated_at %></span><br/>
-            <!-- todo: get the review of the picture dynamically -->
-            <span class="picture-rating"><strong>Picture Rating:</strong> <%= last_review.stars %></span><br/>
-            <p class="desc">
-                <!-- todo: get the description of this review -->
-                <%= last_review.description %>
-            </p>
-        </div>
-    </div>
+<%= render :partial => "layouts/databox",
+           :locals => { :title => "Most Recent Picture",
+                        :menu_item => @menu_item,
+                        :review => @last_review,
+                        :restaurant => @restaurant } %>
 </div>
 <!-- end left column on page -->
 
@@ -71,7 +31,7 @@
         <tr>
             <!-- todo: link to a list of all users who put a star review on this menuitem (?) -->
             <td>Average Rating</td>
-            <td><%= "%.2f" % (@menu_item.reviews.map{|m| m.stars}.sum/@menu_item.reviews.count) %> (voted on by <a href="">16 people</a>)</td>
+            <td><%= "%.2f" % (@menu_item.reviews.map{|m| m.stars}.sum/@menu_item.reviews.count) %> (based on <a href=""><% @menu_item.reviews.count %> reviews</a>)</td>
         </tr>
         <tr>
             <!-- todo: get the tags for this menu item? -->
@@ -85,10 +45,15 @@
         </tr>
     </table>
 
-    <div id="ratings">
+    <div id="reviews">
         <!-- todo: change "ratings" to reviews, dynamically grab these and show, edit destroy -->
         <!-- todo: place the most highly rated pictures of this item here -->
-        <h1>Top 4 pictures of <%= @menu_item.name %> at <%= @restaurant.name %></h1>
+        <%
+          if @restaurant.menu_items.count < 4
+            @num_top_reviews = @restaurant.menu_items.count
+          end
+        %>
+        <h1>Top <%= @top_reviews %> pictures of <%= @menu_item.name %> at <%= @restaurant.name %></h1>
         <!-- todo: when a sorting option is pressed, sort the reviews -->
         <ul id="sort-options">
             <li>Most recent</li>
@@ -96,35 +61,32 @@
             <!-- todo (?): i.e. "show me desserts"...this could also be a dropdown -->
             <li>Type</li>
         </ul>
-        <div class="ratings-list">
+        <div class="reviews-list">
             <% @menu_item.reviews.each do |review| %>
-              <div class="rating-item">
-                <div class="small-menuitem-image"><%= image_tag review.picture.url(:thumb) %>stub for 130x110 picture </div>
+              <div class="review-item">
+                <div class="small-menuitem-image"><%= image_tag review.picture.url(:thumb) %></div>
                   by <a href="profile">nadine</a>
                   <!-- review for picture?  for food? -->
                   <%= pluralize(review.stars, 'star') %> <br/>
                   <%= review.description %><br/>
                   <%= link_to 'Show', review %> |
                   <%= link_to 'Edit', edit_review_path(review) %> |
-                  <%= link_to 'Delete', review, :confirm => "Are you sure you want to delete this review?", :method => :delete %></p>
+                  <%= link_to 'Delete', review, :confirm => "Are you sure you want to delete this review?", :method => :delete %>
               </div>
             <% end %>
         </div>
-        <!-- todo: find the number of pictures total for this menu item
-                   make this link to a page which contains all pictures of the menu item,
-                      or load all the pictures here -->
-        <a href="">See all pictures (83)</a>
     </div>
 
     <div id="content-footer">
+        <!-- todo: find the number of pictures total for this menu item
+                   make this link to a page which contains all pictures of the menu item,
+                      or load all the pictures here -->
+        <a href="/">See all pictures (<%= @menu_item.reviews.count %>)</a>
         <p><%= link_to 'Back to ' + @restaurant.name, @restaurant %></p>
         <p><%= link_to 'Edit menu item', edit_menu_item_path(@menu_item) %></p>
         <p><%= link_to 'Back', restaurant_path(@restaurant) %></p>
 
-        <span class="note">
-            <!-- todo: make a page which will allow users to report categorization errors -->
-            Is this menu item misnamed or misplaced?  <a href="">Let us know!</a>
-        </span>
+        <%= render :partial => "layouts/reporterror", :locals => {:is_restaurant => false } %>
     </div>
 </div>
 <!-- end right column on page -->

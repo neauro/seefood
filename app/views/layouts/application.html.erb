@@ -1,31 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>seefood :9</title>
-        <%= stylesheet_link_tag "main" %>
-        <%= javascript_include_tag :defaults %>
-        <%= csrf_meta_tag %>
-    </head>
-    <body>
+  <head>
+    <title>seefood :9</title>
+    <%= stylesheet_link_tag "main" %>
+    <%= javascript_include_tag :defaults %>
+    <%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false" %>
+    <%= javascript_include_tag "map" %>        
+    <%= csrf_meta_tag %>
+  </head>
+  <body>
 
-        <div id="center-box">
-            <h1 id="sitename"><a href="">seefood :9</a></h1>
+  <div id="center-box">
+    <div id="userbar">
+      <span>Find food near you!</span>
+      <ul>
+        <li><a href="/signup.html">Sign up</a></li>
+        <li><a href="/login.html">Log in</a></li>
+      </ul>
+    </div>
 
-            <div id="navi">
-                <div>
-                    <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/about.html">About</a></li>
-                        <li><a href="/upload.html">Upload a picture!</a></li>
-                    </ul>
-                    <input type="text" size="25" value="Search foods or restaurants"/><input type="button" value="Search"/>
-                    </div>
-            </div>
+    <div id="sitename"><a href="/">seefood :9</a></div>
 
-            <div id="main-content">
-                <%= yield %>
-            </div>
+    <div id="navi">
+      <div>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/upload.html">Upload a picture!</a></li>
+        </ul>
+        <input type="text" size="25" value="Search foods or restaurants"/>
+        <input type="button" value="Search"/>
+      </div>
+    </div>
 
-        </div>
-    </body>
+    <div id="main-content">
+      <%= yield %>
+    </div>
+
+  </div>
+</body>
 </html>
