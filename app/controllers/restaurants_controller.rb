@@ -14,6 +14,19 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/1.xml
   def show
     @restaurant = Restaurant.find(params[:id])
+    
+    # todo: get most popular (based on food rating, or popularity of photo?) photo
+    # for now, it's just the first menuitem for this restaurant
+    # and last menu item for this restaurant is the "most recent" one
+    # todo: also get most highly rated review for top menu item and most recent menu item
+    @has_menu_items = false
+    if !@restaurant.menu_items.empty?
+      @top_menu_item = @restaurant.menu_items[0]
+      @top_menu_item_best_review = @top_menu_item.reviews[0]
+      @recent_menu_item = @restaurant.menu_items[-1]
+      @recent_menu_item_best_review = @recent_menu_item.reviews[0]
+      @has_menu_items = true
+    end
 
     respond_to do |format|
       format.html # show.html.erb

@@ -1,0 +1,24 @@
+<% # presently this is just the first review for this menu item
+   # todo: grab the most popular review for this menu item
+%>
+
+<div class="food-data-box">
+  <!-- todo: grab the menu item with the most ratings, and place data from it here -->
+  <h1><%= title %></h1>
+  <div class="big-menuitem-image">
+    <%= image_tag review.picture.url(:medium) %>
+  </div>
+  <div class="review-info">
+    <%= link_to menu_item.name, menu_item %> at
+    <%= link_to restaurant.name, restaurant_path(restaurant) %><br/>
+    <!-- todo: link this to a profile view -->
+    by <a href="profile.html">nadine</a><br/>
+    <span class="review-date"><strong>Date Taken: </strong><%= review.picture_updated_at.strftime("%B %d, %y at %H:%M%p (%A)") %></span><br/>
+    <span class="stars"><strong>Stars: </strong> <%= review.stars %> </span>
+    <!-- todo: calculate peoples' rating of this picture -->
+    <!-- <span class="picture-rating"><strong>Picture Rating: </strong><%= review.stars %></span><br/> -->
+  <p class="desc">
+    <%= review.description %>
+  </p>
+  </div>
+</div>
