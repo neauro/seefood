@@ -2,6 +2,8 @@ Seefood::Application.routes.draw do
   get "pages/home"
   get "home/index"
 
+  devise_for :users
+
   resources :restaurants
 
   match "/reviews/:menu_item_id/new" => "reviews#new", :as => "new_review", :via => "get"
